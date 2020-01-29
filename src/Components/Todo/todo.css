@@ -1,0 +1,41 @@
+.todo {
+    display: flex;
+    align-items: center;
+    border: 2px solid blue;
+    height: 40px;
+    padding: 5px;
+}
+
+.todo:hover {
+    background-color: rgba(219, 218, 218, 0.301);
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.todo-value {
+    margin-right: 20px;
+}
+
+.todo-value--completed {
+    text-decoration: line-through;
+}
+
+.todo-delete {
+    display: none;
+    background: none;
+    border: none;
+    height: 30px;
+    width: 10%;
+}
+
+.todo-delete:hover {
+    border: 1px solid purple;
+}
+
+.todo:hover .todo-delete {
+    cursor: pointer;
+    display: block;
+}

@@ -1,12 +1,17 @@
 import React from 'react'
 import UserSettingsContainer from '../../Containers/UserSettingsContainer'
+import NewUserForm from '../NewUserForm/NewUserForm'
 import Error from '../Error/Error'
 
-const createRandomUser = () => ({ username: `1${Math.random().toString(36).substring(2, 15)}`, email: `a${Math.random().toString(36).substring(2, 15)}davidC@email.com` })
-
-const UserSettings = ({ createNewUser, status, clearError }) => (
+const UserSettings = ({ createNewUser, status, clearError, toggleCreateNewUser, createNewUserWindowOpen }) => (
     <section>
-        <button onClick={() => createNewUser(createRandomUser())}>+</button>
+        <button onClick={() => toggleCreateNewUser()}>+</button>
+        { createNewUserWindowOpen &&
+            <NewUserForm
+                toggleCreateNewUser={toggleCreateNewUser}
+                createNewUser={createNewUser}
+            />
+        }
         { status !== 'OK' && <Error clearError={clearError} error={status.message} /> }
     </section>
 )

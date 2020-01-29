@@ -25,7 +25,7 @@ const createNewUser = async (userInfo) => {
     return user
   }
   catch (error) {
-    return error;
+    return error
   }
 }
 

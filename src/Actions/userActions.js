@@ -10,3 +10,19 @@ export const getAllUsers = () => dispatch => {
             })
         })
 }
+
+export const createNewUser = (userInfo) => dispatch => {
+    UserService.createNewUser(userInfo)
+        .then(user => {
+            dispatch({
+                type: CONSTANTS.CREATE_NEW_USER,
+                payload: user
+            })
+        })
+        .catch(error => {
+            dispatch({
+                type: CONSTANTS.CREATE_NEW_USER_ERRED,
+                payload: error
+            })
+        })
+}

@@ -5,7 +5,8 @@ import {
 } from '../Actions/userActions'
 
 const mapStateToProps = ({ userReducer }) => ({
-  users: userReducer.users
+  users: userReducer.users,
+  status: userReducer.status
 })
 
 const mapDispatchToProps = dispatch =>

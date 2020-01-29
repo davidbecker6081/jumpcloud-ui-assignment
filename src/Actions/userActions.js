@@ -13,16 +13,21 @@ export const getAllUsers = () => dispatch => {
 
 export const createNewUser = (userInfo) => dispatch => {
     UserService.createNewUser(userInfo)
-        .then(user => {
-            dispatch({
-                type: CONSTANTS.CREATE_NEW_USER,
-                payload: user
-            })
-        })
-        .catch(error => {
-            dispatch({
-                type: CONSTANTS.CREATE_NEW_USER_ERRED,
-                payload: error
-            })
+        .then(response => {
+            if (!!response.email) {
+                dispatch({
+                    type: CONSTANTS.CREATE_NEW_USER,
+                    payload: response
+                })
+            } else {
+                dispatch({
+                    type: CONSTANTS.CREATE_NEW_USER_ERRED,
+                    payload: response
+                })
+            }
         })
 }
+
+export const clearError = () => ({
+    type: CONSTANTS.CLEAR_ERROR
+})

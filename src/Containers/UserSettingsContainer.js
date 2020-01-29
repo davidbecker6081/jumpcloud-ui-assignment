@@ -1,15 +1,21 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {
-  createNewUser
+  createNewUser,
+  clearError
 } from '../Actions/userActions'
+
+const mapStateToProps = ({ userReducer }) => ({
+  status: userReducer.status
+})
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      createNewUser
+      createNewUser,
+      clearError
     },
     dispatch
   )
 
-export default connect(null, mapDispatchToProps)
+export default connect(mapStateToProps, mapDispatchToProps)

@@ -1,0 +1,9 @@
+.error-popup {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    height: 200px;
+    position: absolute;
+    width: 300px;
+    z-index: 100
+}

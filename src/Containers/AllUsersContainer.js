@@ -1,17 +1,17 @@
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import {
-  addTodo
-} from '../Actions/todoActions'
+  getAllUsers
+} from '../Actions/userActions'
 
-const mapStateToProps = ({ todoReducer }) => ({
-  todos: todoReducer.todos
+const mapStateToProps = ({ userReducer }) => ({
+  users: userReducer.users
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      addTodo
+      getAllUsers
     },
     dispatch
   )

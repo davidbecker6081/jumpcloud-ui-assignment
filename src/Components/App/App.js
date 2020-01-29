@@ -1,19 +1,16 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import TodoInput from '../TodoInput/TodoInput'
-import AllTodos from '../AllTodos/AllTodos'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import AllUsers from '../AllUsers/AllUsers'
 
 const routes = (
-  <Switch>
-    <Route exact path="/" component={TodoInput} />
-    <Route exact path="/" component={AllTodos} />
-  </Switch>
+  <main>
+    <Route exact path="/" component={AllUsers} />
+  </main>
 )
 
-const App = ({ params }) => {
-  console.log(params)
+const App = ({ store }) => {
   return (
-    <Router>
+    <Router store={store}>
         {routes}
     </Router>
   )

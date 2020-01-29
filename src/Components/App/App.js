@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import AllUsers from '../AllUsers/AllUsers'
+
+const AllUsers = lazy(() => import('../AllUsers/AllUsers'))
 
 const routes = (
   <main>
-    <Route exact path="/" component={AllUsers} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Route exact path="/" component={AllUsers} />
+    </Suspense>
   </main>
 )
 

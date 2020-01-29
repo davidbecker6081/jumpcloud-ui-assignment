@@ -1,3 +1,7 @@
 .allUsers {
     width: 263px;
 }
+
+.fallback {
+    font-size: 100px;
+}

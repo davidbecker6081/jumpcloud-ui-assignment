@@ -3,6 +3,7 @@ import AllUsersContainer from '../../Containers/AllUsersContainer'
 import User from '../User/User'
 import './allUsers.css'
 
+
 class AllUsers extends React.Component {
     componentDidMount() {
         this.props.getAllUsers()
@@ -10,7 +11,7 @@ class AllUsers extends React.Component {
 
     render() {
         return (
-           !!this.props.users && <section className="allUsers">
+            <section className='allUsers'>
                 {
                     this.props.users.map(user => 
                         <User

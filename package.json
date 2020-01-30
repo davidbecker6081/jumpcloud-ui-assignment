@@ -6,7 +6,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom"
+    "test": "react-scripts test --env=jsdom --verbose=false"
   },
   "keywords": [],
   "author": "David Becker <david@beckersite.com> (https://david-a-becker.com/)",
@@ -21,7 +21,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "sinon": "^8.1.1"
   },
   "browserslist": {
     "production": [

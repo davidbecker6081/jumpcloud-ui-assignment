@@ -1,33 +1,77 @@
+import sinon from 'sinon'
+import UserService from '../../Services/UserService'
 import {
-    GET_ALL_USERS,
     TOGGLE_CREATE_NEW_USER,
-    CREATE_NEW_USER_SUCCESS,
-    CREATE_NEW_USER_ERRED,
     CLEAR_ERROR,
     TOGGLE_DELETE_USER,
-    DELETE_USER_SUCCESS,
-    DELETE_USER_ERRED,
-    TOGGLE_UPDATE_USER,
-    UPDATE_USER_SUCCESS,
-    UPDATE_USER_ERRED
+    GET_ALL_USERS_SUCCESS,
+    GET_ALL_USERS_ERRED
 } from '../utils/constants'
 import {
     toggleCreateNewUser,
     clearError,
-    toggleDeleteUser
+    toggleDeleteUser,
+    getAllUsers
 } from '../userActions'
 
-const testPureAction = ({ testName, action, type, payload }) => {
-    it(testName, () => {
-        const actual = action()
-        expect(actual.type).toEqual(type)
-        expect(actual.payload).toEqual(payload)
+describe('User Actions', () => {
+    describe('Pure Actions', () => {
+        const testPureAction = ({ testName, action, type, payload }) => {
+            it(testName, () => {
+                const actual = action()
+                expect(actual.type).toEqual(type)
+                expect(actual.payload).toEqual(payload)
+            })
+        }
+        
+        testPureAction({ testName: 'Should toggle create new user', action: toggleCreateNewUser, type: TOGGLE_CREATE_NEW_USER, payload: undefined })
+        testPureAction({ testName: 'Should clear error', action: clearError, type: CLEAR_ERROR, payload: undefined })
+        testPureAction({ testName: 'Should toggle delete user open', action: () => toggleDeleteUser(1), type: TOGGLE_DELETE_USER, payload: { userId: 1 } })
+        testPureAction({ testName: 'Should toggle delete user closed', action: () => toggleDeleteUser(), type: TOGGLE_DELETE_USER, payload: { userId: null } })
     })
-}
 
-testPureAction({ testName: 'Should toggle create new user', action: toggleCreateNewUser, type: TOGGLE_CREATE_NEW_USER, payload: undefined })
-testPureAction({ testName: 'Should clear error', action: clearError, type: CLEAR_ERROR, payload: undefined })
-testPureAction({ testName: 'Should toggle delete user open', action: () => toggleDeleteUser(1), type: TOGGLE_DELETE_USER, payload: { userId: 1 } })
-testPureAction({ testName: 'Should toggle delete user closed', action: () => toggleDeleteUser(), type: TOGGLE_DELETE_USER, payload: { userId: null } })
+    describe('API Request Actions', () => {
+        const userA = { email: 'email@email.com', username: 'user1234' }
+        const userB = { email: 'emailB@email.com', username: 'user5678'}
+        const testUsers = [userA, userB]
 
+        describe('GET ALL USERS', () => {
+            const action = getAllUsers
+            let type, payload, getAllUsersStub
+
+            afterEach(() => {
+                sinon.restore()
+            })
+
+            it('Should dispatch the correct payload for a successful request', async () => {
+                type = GET_ALL_USERS_SUCCESS
+                payload = { users: testUsers }
+                getAllUsersStub = sinon.stub(UserService, 'getAllUsers').callsFake(() => testUsers)
+
+                try {
+                    const actual = await action()
+                    expect(getAllUsersStub.called).toEqual(true)
+                    expect(actual.type).toEqual(type)
+                    expect(actual.payload).toEqual(payload)
+                } catch (error) {}
+
+            })
+            it('Should dispatch the correct payload for a erred request', async () => {
+                type = GET_ALL_USERS_ERRED
+                const errorMessage = 'The request erred'
+                payload = { error: { message: errorMessage } }
+                getAllUsersStub = sinon.stub(UserService, 'getAllUsers').value(() => ({ message: errorMessage }))
+                
+                try {
+                    const actual = await action()
+                } catch (error) {
+                    expect(getAllUsersStub.called).toEqual(false)
+                    expect(error.message).toEqual(errorMessage)
+                    expect(actual.type).toEqual(type)
+                    expect(actual.payload).toEqual(payload)
+                }
+            })
+        })
+    })
+})
 

@@ -1,9 +1,10 @@
 import UserReducer from '../userReducer'
 import {
-    GET_ALL_USERS
+    GET_ALL_USERS_SUCCESS,
+    GET_ALL_USERS_ERRED
 } from '../../Actions/utils/constants'
 
-describe('user reducer', () => {
+describe('User Reducer', () => {
     const userA = { email: 'email@email.com', username: 'user1234' }
     const userB = { email: 'emailB@email.com', username: 'user5678'}
     const testUsers = [userA, userB]
@@ -15,13 +16,13 @@ describe('user reducer', () => {
         userToUpdate: null,
         status: 'OK'
     }
-    it('should have a default state', () => {
+    it('Should have a default state', () => {
         const action = { type: undefined }
         const expectedReturn = initialState
         expect(UserReducer(undefined, action)).toEqual(expectedReturn)
     })
-    it('should get all the users', () => {
-        const action = { type: GET_ALL_USERS, payload: { users: testUsers }}
+    it('Should get all the users', () => {
+        const action = { type: GET_ALL_USERS_SUCCESS, payload: { users: testUsers }}
         const expectedReturn = { ...initialState, users: testUsers }
         const actualReturn = UserReducer(undefined, action)
         const userAFound = !!actualReturn.users.find(user => user.username === userA.username)
@@ -29,5 +30,16 @@ describe('user reducer', () => {
         expect(actualReturn).toEqual(expectedReturn)
         expect(actualReturn.users.length).toEqual(2)
         expect(userAFound).toEqual(true)
+    })
+
+    it('Should set the status correctly if get all users erred', () => {
+        const errorMessage = { message: 'Get all users erred' }
+        const action = { type: GET_ALL_USERS_ERRED, payload: { error: errorMessage }}
+        const expectedReturn = { ...initialState, status: errorMessage }
+        const actualReturn = UserReducer(undefined, action)
+
+        expect(actualReturn).toEqual(expectedReturn)
+        expect(actualReturn.status).toEqual(errorMessage)
+        expect(actualReturn.status.message).toEqual(errorMessage.message)
     })
 })

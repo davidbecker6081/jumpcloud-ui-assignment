@@ -1,5 +1,6 @@
 import {
-    GET_ALL_USERS,
+    GET_ALL_USERS_SUCCESS,
+    GET_ALL_USERS_ERRED,
     TOGGLE_CREATE_NEW_USER,
     CREATE_NEW_USER_SUCCESS,
     CREATE_NEW_USER_ERRED,
@@ -14,11 +15,16 @@ import {
 import UserService from '../Services/UserService'
 
 export const getAllUsers = () => async (dispatch) => {
-    const users = await UserService.getAllUsers()
-    if (!!users) {
+    const response = await UserService.getAllUsers()
+    if (!!response || !response.message) {
         dispatch({
-            type: GET_ALL_USERS,
-            payload: { users }
+            type: GET_ALL_USERS_SUCCESS,
+            payload: { users: response }
+        })
+    } else {
+        dispatch({
+            type: GET_ALL_USERS_ERRED,
+            payload: { error: response }
         })
     }
 }

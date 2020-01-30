@@ -1,5 +1,6 @@
 import {
-    GET_ALL_USERS,
+    GET_ALL_USERS_SUCCESS,
+    GET_ALL_USERS_ERRED,
     TOGGLE_CREATE_NEW_USER,
     CREATE_NEW_USER_SUCCESS,
     CREATE_NEW_USER_ERRED,
@@ -28,10 +29,15 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch(action.type) {
-        case GET_ALL_USERS:
+        case GET_ALL_USERS_SUCCESS:
             return {
                 ...state,
                 users: action.payload.users
+            }
+        case GET_ALL_USERS_ERRED:
+            return {
+                ...state,
+                status: action.payload.error
             }
         case TOGGLE_CREATE_NEW_USER:
             return {

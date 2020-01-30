@@ -50,7 +50,20 @@ export const deleteUser = (userId) => async (dispatch) => {
         type: CONSTANTS.DELETE_USER_SUCCESS,
         payload: response.id
     })
-} 
+}
+
+export const toggleUpdateUser = (user) => {
+    if (user) {
+        return {
+            type: CONSTANTS.TOGGLE_UPDATE_USER,
+            payload: user
+        }
+    }
+    return {
+        type: CONSTANTS.TOGGLE_UPDATE_USER,
+        payload: null
+    }
+}
 
 export const clearError = () => ({
     type: CONSTANTS.CLEAR_ERROR

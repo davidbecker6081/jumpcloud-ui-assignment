@@ -1,7 +1,5 @@
 - Add in ActionUseCase and ReducerUseCase as return data types
-- Extract methods as reducer utilities (check Micah's example)
-- Constants file
-- Use 'MovieController' like in other assignment to make server requests
+- Extract methods as reducer utilities
 - Test with sinon
 - Add ESLINT
 - Loading suspense should be a <Loading> component

@@ -1,7 +1,18 @@
 import React from 'react'
-import './newUserForm.css'
+import './userForm.css'
 
-class NewUserForm extends React.Component {
+class UserForm extends React.Component {
+    static getDerivedStateFromProps(props) {
+        if (props.email && props.username) {
+            return {
+                email: props.email,
+                username: props.username,
+                isValidInput: true
+            }
+        }
+        return null
+    }
+
     constructor() {
         super()
         this.state = {
@@ -9,7 +20,7 @@ class NewUserForm extends React.Component {
             email: '',
             isValidInput: false
         }
-        this.createNewUserWithValidation = this.createNewUserWithValidation.bind(this)
+        this.createNewOrUpdateUserWithValidation = this.createNewOrUpdateUserWithValidation.bind(this)
         this.constructUser = this.constructUser.bind(this)
         this.toggleValidation = this.toggleValidation.bind(this)
         this.checkInputValidation = this.checkInputValidation.bind(this)
@@ -44,12 +55,12 @@ class NewUserForm extends React.Component {
         })
     }
 
-    createNewUserWithValidation(e) {
-        const { createNewUser } = this.props
+    createNewOrUpdateUserWithValidation(e) {
+        const { createNewUser, updateUser } = this.props
         e.preventDefault()
         if (this.checkInputValidation()) {
             const user = this.constructUser()
-            createNewUser(user)
+            !!updateUser ? updateUser(user) : createNewUser(user)
         } else {
             this.toggleValidation({ isValidInput: false })
         }
@@ -57,18 +68,19 @@ class NewUserForm extends React.Component {
 
     render() {
         const { username, email, isValidInput } = this.state
-        const { toggleCreateNewUser } = this.props
+        const { toggleWindow, email: emailProps, username: usernameProps } = this.props
         const submitDisabled = !username || !email
+        const submitText = (emailProps && usernameProps) ? 'Update User' : 'Create New User'
         return (
-            <form onSubmit={(e) => this.createNewUserWithValidation(e)}>
+            <form onSubmit={(e) => this.createNewOrUpdateUserWithValidation(e)}>
                 <input type='text' placeholder='Username' value={username} onChange={(e) => this.catchUserInput('username', e.target.value)} />
                 <input type='email' placeholder='Email' value={email} onChange={(e) => this.catchUserInput('email', e.target.value)} />
-                <button type='submit' disabled={submitDisabled}>Create New User</button>
+                <button type='submit' disabled={submitDisabled}>{submitText}</button>
                 { !isValidInput && username && email && <p className='validation-error'>Please enter a valid username and email</p>}
-                <button onClick={() => toggleCreateNewUser()}>X</button>
+                <button onClick={() => toggleWindow()}>X</button>
             </form>
         )
     }
 }
 
-export default NewUserForm
+export default UserForm

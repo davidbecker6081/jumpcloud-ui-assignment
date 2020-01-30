@@ -3,13 +3,15 @@ import { bindActionCreators } from 'redux'
 import {
   getAllUsers,
   toggleDeleteUser,
-  deleteUser
+  deleteUser,
+  toggleUpdateUser
 } from '../Actions/userActions'
 
 const mapStateToProps = ({ userReducer }) => ({
   users: userReducer.users,
   deleteUserConfirmation: userReducer.deleteUserConfirmation,
   userToDelete: userReducer.userToDelete,
+  userToUpdate: userReducer.userToUpdate,
   status: userReducer.status
 })
 
@@ -18,7 +20,8 @@ const mapDispatchToProps = dispatch =>
     {
       getAllUsers,
       toggleDeleteUser,
-      deleteUser
+      deleteUser,
+      toggleUpdateUser
     },
     dispatch
   )

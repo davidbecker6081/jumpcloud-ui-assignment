@@ -6,7 +6,7 @@ const AllUsers = lazy(() => import('../AllUsers/AllUsers'))
 
 const routes = (
   <main>
-    <Route exact path="/" component={() => <UserSettings />} />
+    <Route exact path="/" component={UserSettings} />
     <Suspense fallback={<div>Loading Users...</div>}>
       <Route exact path="/" component={AllUsers} />
     </Suspense>

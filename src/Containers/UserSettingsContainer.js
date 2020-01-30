@@ -3,11 +3,13 @@ import { bindActionCreators } from 'redux'
 import {
   createNewUser,
   clearError,
-  toggleCreateNewUser
+  toggleCreateNewUser,
+  toggleUpdateUser
 } from '../Actions/userActions'
 
 const mapStateToProps = ({ userReducer }) => ({
   createNewUserWindowOpen: userReducer.createNewUserWindowOpen,
+  userToUpdate: userReducer.userToUpdate,
   status: userReducer.status
 })
 
@@ -16,7 +18,8 @@ const mapDispatchToProps = dispatch =>
     {
       createNewUser,
       clearError,
-      toggleCreateNewUser
+      toggleCreateNewUser,
+      toggleUpdateUser
     },
     dispatch
   )

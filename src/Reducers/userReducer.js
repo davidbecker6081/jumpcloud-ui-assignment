@@ -5,6 +5,7 @@ const initialState = {
     createNewUserWindowOpen: false,
     deleteUserConfirmation: false,
     userToDelete: null,
+    userToUpdate: null,
     status: 'OK'
 }
 
@@ -47,6 +48,11 @@ export default (state = initialState, action) => {
                 deleteUserConfirmation: !state.deleteUserConfirmation,
                 userToDelete: null,
                 users: state.users.filter(user => user.id !== action.payload)
+            }
+        case CONSTANTS.TOGGLE_UPDATE_USER:
+            return {
+                ...state,
+                userToUpdate: action.payload
             }
         default:
             return initialState

@@ -4,7 +4,7 @@ import './user.css'
 const User = ({ username, toggleDeleteUser, toggleUpdateUser }) => (
     <article className="user" onClick={() => toggleUpdateUser()}>
         {username}
-        <button onClick={() => toggleDeleteUser()}>X</button>
+        <button onClick={(e) => { e.stopPropagation(); toggleDeleteUser() }}>X</button>
     </article>
 )
 

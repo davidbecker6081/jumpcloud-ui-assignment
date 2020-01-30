@@ -49,6 +49,11 @@ export default (state = initialState, action) => {
                 userToDelete: null,
                 users: state.users.filter(user => user.id !== action.payload)
             }
+        case CONSTANTS.DELETE_USER_ERRED:
+            return {
+                ...state,
+                status: action.payload
+            }
         case CONSTANTS.TOGGLE_UPDATE_USER:
             return {
                 ...state,

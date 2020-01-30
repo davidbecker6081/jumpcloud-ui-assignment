@@ -46,10 +46,17 @@ export const toggleDeleteUser = (userId) => {
 
 export const deleteUser = (userId) => async (dispatch) => {
     const response = await UserService.deleteUser(userId)
-    dispatch({
-        type: CONSTANTS.DELETE_USER_SUCCESS,
-        payload: response.id
-    })
+    if (response.id) {
+        dispatch({
+            type: CONSTANTS.DELETE_USER_SUCCESS,
+            payload: response.id
+        })
+    } else {
+        dispatch({
+            type: CONSTANTS.DELETE_USER_ERRED,
+            payload: response
+        })
+    }
 }
 
 export const toggleUpdateUser = (user) => {

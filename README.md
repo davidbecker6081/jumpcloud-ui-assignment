@@ -30,6 +30,7 @@ Local URL: http://localhost:8005/api/systemusers
 ## Discussion/Future Considerations
 - Add in ActionUseCase and ReducerUseCase as return data types for more structured and standardized return values 
 - Add ESLINT
+- Add prop-types (I didn't add these just due to time limit, but I feel they are definitely important to the quality of UI components)
 - Loading suspense should be a <Loading> component
 - Adding <ErrorBoundary> to catch errors, especially from API requests or component errors
 - Add in more specific validation for fields during new user creation

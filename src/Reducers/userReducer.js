@@ -54,6 +54,17 @@ export default (state = initialState, action) => {
                 ...state,
                 userToUpdate: action.payload
             }
+        case CONSTANTS.UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                userToUpdate: null,
+                users: state.users.map(user => {
+                    if (user.id === action.payload.id) {
+                        return action.payload
+                    }
+                    return user
+                })
+            }
         default:
             return initialState
     }

@@ -4,7 +4,8 @@ import {
   createNewUser,
   clearError,
   toggleCreateNewUser,
-  toggleUpdateUser
+  toggleUpdateUser,
+  updateUser
 } from '../Actions/userActions'
 
 const mapStateToProps = ({ userReducer }) => ({
@@ -19,7 +20,8 @@ const mapDispatchToProps = dispatch =>
       createNewUser,
       clearError,
       toggleCreateNewUser,
-      toggleUpdateUser
+      toggleUpdateUser,
+      updateUser
     },
     dispatch
   )

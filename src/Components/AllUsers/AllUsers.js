@@ -2,7 +2,6 @@ import React from 'react'
 import AllUsersContainer from '../../Containers/AllUsersContainer'
 import User from '../User/User'
 import Confirmation from '../Confirmation/Confirmation'
-import UserSettings from '../UserSettings/UserSettings'
 import './allUsers.css'
 
 

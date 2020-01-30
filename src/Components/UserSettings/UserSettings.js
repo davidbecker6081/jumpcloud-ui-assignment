@@ -10,7 +10,8 @@ const UserSettings = ({
     toggleCreateNewUser,
     createNewUserWindowOpen,
     toggleUpdateUser,
-    userToUpdate
+    userToUpdate,
+    updateUser
 }) => (
     <section>
         <button onClick={() => toggleCreateNewUser()}>+</button>
@@ -25,7 +26,8 @@ const UserSettings = ({
             !createNewUserWindowOpen && userToUpdate &&
                 <UserForm
                     toggleWindow={toggleUpdateUser}
-                    updateUser={() => console.log('update')}
+                    updateUser={updateUser}
+                    userIdToUpdate={userToUpdate.id}
                     username={userToUpdate.username}
                     email={userToUpdate.email}
                 />

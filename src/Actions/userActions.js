@@ -65,6 +65,14 @@ export const toggleUpdateUser = (user) => {
     }
 }
 
+export const updateUser = (user) => async (dispatch) => {
+    const response = await UserService.updateUser(user)
+    dispatch({
+        type: CONSTANTS.UPDATE_USER_SUCCESS,
+        payload: response
+    })
+}
+
 export const clearError = () => ({
     type: CONSTANTS.CLEAR_ERROR
 })

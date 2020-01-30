@@ -47,10 +47,29 @@ const deleteUser = async (userId) => {
   }
 }
 
+const updateUser = async (user) => {
+  try {
+    const response = await fetch(CONSTANTS.ROUTES.UPDATEUSER(user.id), {
+      method: 'put',
+      body: JSON.stringify(user),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+    const parsedResponse = await response.json()
+    return parsedResponse
+  }
+  catch (error) {
+    return error
+  }
+}
+
 const UserService = {
   getAllUsers,
   createNewUser,
-  deleteUser
+  deleteUser,
+  updateUser
 }
 
 export default UserService;

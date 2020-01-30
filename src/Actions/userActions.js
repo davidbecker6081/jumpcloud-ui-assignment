@@ -1,32 +1,44 @@
-import CONSTANTS from './utils/constants'
+import {
+    GET_ALL_USERS,
+    TOGGLE_CREATE_NEW_USER,
+    CREATE_NEW_USER_SUCCESS,
+    CREATE_NEW_USER_ERRED,
+    CLEAR_ERROR,
+    TOGGLE_DELETE_USER,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_ERRED,
+    TOGGLE_UPDATE_USER,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_ERRED
+} from './utils/constants'
 import UserService from '../Services/UserService'
 
 export const getAllUsers = () => async (dispatch) => {
     const users = await UserService.getAllUsers()
     if (!!users) {
         dispatch({
-            type: CONSTANTS.GET_ALL_USERS,
-            payload: users
+            type: GET_ALL_USERS,
+            payload: { users }
         })
     }
 }
 
 export const toggleCreateNewUser = () => ({
-    type: CONSTANTS.TOGGLE_CREATE_NEW_USER
+    type: TOGGLE_CREATE_NEW_USER
 })
 
 export const createNewUser = (userInfo) => async (dispatch) => {
     const response = await UserService.createNewUser(userInfo)
     if (!!response.email) {
         dispatch({
-            type: CONSTANTS.CREATE_NEW_USER,
-            payload: response
+            type: CREATE_NEW_USER_SUCCESS,
+            payload: { newUser: response }
         })
         dispatch(toggleCreateNewUser())
     } else {
         dispatch({
-            type: CONSTANTS.CREATE_NEW_USER_ERRED,
-            payload: response
+            type: CREATE_NEW_USER_ERRED,
+            payload: { error: response }
         })
     }
 }
@@ -34,13 +46,13 @@ export const createNewUser = (userInfo) => async (dispatch) => {
 export const toggleDeleteUser = (userId) => {
     if (userId) {
         return {
-            type: CONSTANTS.TOGGLE_DELETE_USER,
-            payload: userId
+            type: TOGGLE_DELETE_USER,
+            payload: { userId }
         }
     }
     return {
-        type: CONSTANTS.TOGGLE_DELETE_USER,
-        payload: null
+        type: TOGGLE_DELETE_USER,
+        payload: { userId: null }
     }
 }
 
@@ -48,13 +60,13 @@ export const deleteUser = (userId) => async (dispatch) => {
     const response = await UserService.deleteUser(userId)
     if (response.id) {
         dispatch({
-            type: CONSTANTS.DELETE_USER_SUCCESS,
-            payload: response.id
+            type: DELETE_USER_SUCCESS,
+            payload: { userId: response.id }
         })
     } else {
         dispatch({
-            type: CONSTANTS.DELETE_USER_ERRED,
-            payload: response
+            type: DELETE_USER_ERRED,
+            payload: { error: response }
         })
     }
 }
@@ -62,13 +74,13 @@ export const deleteUser = (userId) => async (dispatch) => {
 export const toggleUpdateUser = (user) => {
     if (user) {
         return {
-            type: CONSTANTS.TOGGLE_UPDATE_USER,
-            payload: user
+            type: TOGGLE_UPDATE_USER,
+            payload: { user }
         }
     }
     return {
-        type: CONSTANTS.TOGGLE_UPDATE_USER,
-        payload: null
+        type: TOGGLE_UPDATE_USER,
+        payload: { user: null }
     }
 }
 
@@ -76,17 +88,17 @@ export const updateUser = (user) => async (dispatch) => {
     const response = await UserService.updateUser(user)
     if (response.id) {
         dispatch({
-            type: CONSTANTS.UPDATE_USER_SUCCESS,
-            payload: response
+            type: UPDATE_USER_SUCCESS,
+            payload: { user: response }
         })
     } else {
         dispatch({
-            type: CONSTANTS.UPDATE_USER_ERRED,
-            payload: response
+            type: UPDATE_USER_ERRED,
+            payload: { error: response }
         })
     }
 }
 
 export const clearError = () => ({
-    type: CONSTANTS.CLEAR_ERROR
+    type: CLEAR_ERROR
 })

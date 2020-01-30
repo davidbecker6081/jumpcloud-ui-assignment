@@ -1,4 +1,16 @@
-import CONSTANTS from '../Actions/utils/constants'
+import {
+    GET_ALL_USERS,
+    TOGGLE_CREATE_NEW_USER,
+    CREATE_NEW_USER_SUCCESS,
+    CREATE_NEW_USER_ERRED,
+    CLEAR_ERROR,
+    TOGGLE_DELETE_USER,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_ERRED,
+    TOGGLE_UPDATE_USER,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_ERRED
+} from '../Actions/utils/constants'
 
 const initialState = {
     users: [],
@@ -11,71 +23,72 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch(action.type) {
-        case CONSTANTS.GET_ALL_USERS:
+        case GET_ALL_USERS:
             return {
                 ...state,
-                users: action.payload
+                users: action.payload.users
             }
-        case CONSTANTS.TOGGLE_CREATE_NEW_USER:
+        case TOGGLE_CREATE_NEW_USER:
             return {
                 ...state,
                 createNewUserWindowOpen: !state.createNewUserWindowOpen
             }
-        case CONSTANTS.CREATE_NEW_USER:
+        case CREATE_NEW_USER_SUCCESS:
             return {
                 ...state,
-                users: [...state.users, action.payload]
+                users: [...state.users, action.payload.newUser]
             }
-        case CONSTANTS.CREATE_NEW_USER_ERRED:
+        case CREATE_NEW_USER_ERRED:
             return {
                 ...state,
-                status: action.payload
+                status: action.payload.error
             }
-        case CONSTANTS.CLEAR_ERROR:
+        case CLEAR_ERROR:
             return {
                 ...state,
                 status: 'OK'
             }
-        case CONSTANTS.TOGGLE_DELETE_USER:
+        case TOGGLE_DELETE_USER:
             return {
                 ...state,
                 deleteUserConfirmation: !state.deleteUserConfirmation,
-                userToDelete: action.payload
+                userToDelete: action.payload.userId
             }
-        case CONSTANTS.DELETE_USER_SUCCESS:
+        case DELETE_USER_SUCCESS:
             return {
                 ...state,
                 deleteUserConfirmation: !state.deleteUserConfirmation,
                 userToDelete: null,
-                users: state.users.filter(user => user.id !== action.payload)
+                users: state.users.filter(user => user.id !== action.payload.userId)
             }
-        case CONSTANTS.DELETE_USER_ERRED:
+        case DELETE_USER_ERRED:
             return {
                 ...state,
-                status: action.payload
+                status: action.payload.error
             }
-        case CONSTANTS.TOGGLE_UPDATE_USER:
+        case TOGGLE_UPDATE_USER:
             return {
                 ...state,
-                userToUpdate: action.payload
+                userToUpdate: action.payload.user
             }
-        case CONSTANTS.UPDATE_USER_SUCCESS:
+        case UPDATE_USER_SUCCESS:
+            const { user } = action.payload
             return {
                 ...state,
                 userToUpdate: null,
-                users: state.users.map(user => {
-                    if (user.id === action.payload.id) {
-                        return action.payload
+                users: state.users.map(u => {
+                    if (u.id === user.id) {
+                        return user
                     }
-                    return user
+                    return u
                 })
             }
-        case CONSTANTS.UPDATE_USER_ERRED:
+        case UPDATE_USER_ERRED:
             return {
                 ...state,
-                status: action.payload
+                status: action.payload.error
             }
         default:
-            return initialState
+            return state
     }
 }

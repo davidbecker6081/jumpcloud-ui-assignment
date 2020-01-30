@@ -26,7 +26,6 @@ const initialState = {
     status: 'OK'
 }
 
-
 export default (state = initialState, action) => {
     switch(action.type) {
         case GET_ALL_USERS:

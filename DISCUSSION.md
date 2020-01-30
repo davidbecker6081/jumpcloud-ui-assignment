@@ -9,6 +9,8 @@
 - Reducer could definitely be extracted into more granular pieces (i.e some pretty good examples of a few potential refactors here: https://redux.js.org/recipes/structuring-reducers/refactoring-reducer-example)
     - That said, I don't think in this simple case, we really need to do that. But if we were making a large app, probably not a bad thing to do
 - Redux styleguide: https://redux.js.org/style-guide/style-guide
+- I typically don't test the UI Components for the reason being that they typically change quite a bit, and I feel that testing them is not worth the payoff of assurance that they're doing the right thing, since we can see that very easily visually 
+    - Usually I will test at the unit level first (business logic, actions/reducers, prop-types, state, etc...) and then if time/resources allow, I might test UI functionality with automated testing (with jest) by exporting the Component separate from the combined Container/Component
 
 1. List the users in your JumpCloud organization.
 2. Create a new user.

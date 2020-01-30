@@ -69,12 +69,22 @@ class UserForm extends React.Component {
         const submitDisabled = !username || !email
         const submitText = (emailProps && usernameProps) ? 'Update User' : 'Create New User'
         return (
-            <form onSubmit={(e) => this.createNewOrUpdateUserWithValidation(e)}>
-                <input type='text' placeholder='Username' value={username} onChange={(e) => this.catchUserInput('username', e.target.value)} />
-                <input type='email' placeholder='Email' value={email} onChange={(e) => this.catchUserInput('email', e.target.value)} />
-                <button type='submit' disabled={submitDisabled}>{submitText}</button>
-                { showValidationError && <p className='validation-error'>Please enter a valid username and email</p>}
-                <button onClick={() => toggleWindow()}>X</button>
+            <form className='user-form' onSubmit={(e) => this.createNewOrUpdateUserWithValidation(e)}>
+                <div>
+                    <div className='user-form-field-container'>
+                        <h3>Username:</h3>
+                        <input type='text' placeholder='Username' value={username} onChange={(e) => this.catchUserInput('username', e.target.value)} />
+                    </div>
+                    <div className='user-form-field-container'>
+                        <h3>Email:</h3>
+                        <input type='email' placeholder='Email' value={email} onChange={(e) => this.catchUserInput('email', e.target.value)} />
+                    </div>
+                </div>
+                <div className='user-form-btn-container'>
+                    <button type='submit' disabled={submitDisabled}>{submitText}</button>
+                    { showValidationError && <p className='validation-error'>Please enter a valid username and email</p>}
+                </div>
+                <button className='close-form-btn' onClick={() => toggleWindow()}>X</button>
             </form>
         )
     }

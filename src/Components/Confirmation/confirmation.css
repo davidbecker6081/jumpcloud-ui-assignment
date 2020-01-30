@@ -1,9 +1,50 @@
 .confirmation-popup {
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 0px 2px 0px #00000033;
+    color: #414c55;
+    display: flex;
+    flex-direction: column;
+    height: 25vh;
+    justify-content: center;
+    padding: 20px 10px;
+    position: absolute;
+    right: 30vw;
+    top: 10vh;
+    width: 350px;
+    z-index: 110;
+}
+
+.confirmation-popup p {
+    margin-bottom: 10px;
+}
+
+.confirmation-popup-btn-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.confirmation-popup-close {
+    background-color: white;
+    border: 1px solid #00000033;
+    border-radius: 2px;
+    color: black;
+}
+
+.confirmation-popup-close:hover {
     background-color: black;
     color: white;
-    font-size: 20px;
-    height: 200px;
-    position: absolute;
-    width: 300px;
-    z-index: 100
+    opacity: 0.2;
+}
+
+.confirmation-popup-delete {
+    background-color: #e54852;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+
+.confirmation-popup-delete:hover {
+    opacity: 0.8;
 }

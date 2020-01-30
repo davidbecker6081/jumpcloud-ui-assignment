@@ -4,7 +4,7 @@ import './error.css'
 const Error = ({ error, clearError }) => (
     <article className='error-popup'>
         {error}
-        <button onClick={() => clearError()}>X</button>
+        <button className='error-popup-close' onClick={() => clearError()}>X</button>
     </article>
 )
 

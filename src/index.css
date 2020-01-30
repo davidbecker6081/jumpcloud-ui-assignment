@@ -34,9 +34,18 @@ button:hover {
 }
 
 button:disabled {
-    background-color: #e3e8e9;
-    color: #92999e;
+    color: #e2e7ea;
     cursor: default;
+}
+
+input {
+    border: none;
+    height: 25px;
+    width: 150px;
+}
+
+input::placeholder {
+    color: #80808033;
 }
 
 input:focus {

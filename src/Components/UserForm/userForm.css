@@ -1,3 +1,66 @@
-.validation-error {
-    color: red
+.user-form {
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 0px 2px 0px #00000033;
+    display: flex;
+    height: 25vh;
+    padding: 10px;
+    position: absolute;
+    right: 30vw;
+    top: 10vh;
+    width: 350px;
+    z-index: 100;
+}
+
+.user-form .validation-error {
+    color: #e54852;
+    font-size: 0.5rem;
+    font-weight: 300;
+}
+
+.user-form-field-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.user-form-field-container h3 {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.user-form-field-container input {
+    background-color: #f5f5f5;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.user-form-btn-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.user-form button[type='submit'] {
+    background-color: #12849a;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+
+.user-form .close-form-btn {
+    background: white;
+    border-radius: 50%;
+    bottom: 67px;
+    color: black;
+    left: 5px;
+    position: relative;
+}
+
+.user-form .close-form-btn:hover {
+    background-color: black;
+    border-radius: 50%;
+    color: white;
+    opacity: 0.2;
 }

@@ -11,6 +11,11 @@ import {
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERRED
 } from '../Actions/utils/constants'
+import {
+    updateUsers,
+    filterUsers,
+    addUser
+} from '../utils/index'
 
 const initialState = {
     users: [],
@@ -20,6 +25,7 @@ const initialState = {
     userToUpdate: null,
     status: 'OK'
 }
+
 
 export default (state = initialState, action) => {
     switch(action.type) {
@@ -36,7 +42,7 @@ export default (state = initialState, action) => {
         case CREATE_NEW_USER_SUCCESS:
             return {
                 ...state,
-                users: [...state.users, action.payload.newUser]
+                users: addUser({ users: state.users, userToAdd: action.payload.newUser })
             }
         case CREATE_NEW_USER_ERRED:
             return {
@@ -59,7 +65,7 @@ export default (state = initialState, action) => {
                 ...state,
                 deleteUserConfirmation: !state.deleteUserConfirmation,
                 userToDelete: null,
-                users: state.users.filter(user => user.id !== action.payload.userId)
+                users: filterUsers({ users: state.users, userToRemove: action.payload.userId })
             }
         case DELETE_USER_ERRED:
             return {
@@ -73,15 +79,11 @@ export default (state = initialState, action) => {
             }
         case UPDATE_USER_SUCCESS:
             const { user } = action.payload
+
             return {
                 ...state,
                 userToUpdate: null,
-                users: state.users.map(u => {
-                    if (u.id === user.id) {
-                        return user
-                    }
-                    return u
-                })
+                users: updateUsers({ users: state.users, updatedUser: user })
             }
         case UPDATE_USER_ERRED:
             return {

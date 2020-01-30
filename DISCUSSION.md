@@ -7,6 +7,8 @@
 - Add in more specific validation for fields during new user creation
 - Could disable the add a new user button if already at user limit and then show a message if hovering over button
 - Add some kind of toaster notification (timed popup notification that tells the user they successfully updated the user)
+- Reducer could definitely be extracted into more granular pieces (i.e some pretty good examples of a few potential refactors here: https://redux.js.org/recipes/structuring-reducers/refactoring-reducer-example)
+    - That said, I don't think in this simple case, we really need to do that. But if we were making a large app, probably not a bad thing to do
 
 1. List the users in your JumpCloud organization.
 2. Create a new user.

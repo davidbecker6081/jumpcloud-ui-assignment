@@ -1,6 +1,7 @@
 import React from 'react'
 import AllUsersContainer from '../../Containers/AllUsersContainer'
 import User from '../User/User'
+import Confirmation from '../Confirmation/Confirmation'
 import './allUsers.css'
 
 
@@ -10,16 +11,19 @@ class AllUsers extends React.Component {
     }
 
     render() {
+        const { users, toggleDeleteUser, deleteUserConfirmation, deleteUser, userToDelete } = this.props
         return (
             <section className='allUsers'>
                 {
-                    this.props.users.map(user => 
+                    users.map(user => 
                         <User
                             key={user.id}
-                            user={user.username}
+                            username={user.username}
+                            toggleDeleteUser={toggleDeleteUser.bind(null, user.id)}
                         />
                     )
                 }
+                { deleteUserConfirmation && <Confirmation toggleDeleteUser={toggleDeleteUser} deleteUser={deleteUser.bind(null, userToDelete)}/> }
             </section>
         )
     }

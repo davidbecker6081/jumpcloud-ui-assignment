@@ -29,9 +29,28 @@ const createNewUser = async (userInfo) => {
   }
 }
 
+const deleteUser = async (userId) => {
+  try {
+    const response = await fetch(CONSTANTS.ROUTES.DELETEUSER(userId), {
+      method: 'delete',
+      body: JSON.stringify({ id: userId }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+    const parsedResponse = await response.json()
+    return parsedResponse
+  }
+  catch (error) {
+    return error
+  }
+}
+
 const UserService = {
   getAllUsers,
-  createNewUser
+  createNewUser,
+  deleteUser
 }
 
 export default UserService;

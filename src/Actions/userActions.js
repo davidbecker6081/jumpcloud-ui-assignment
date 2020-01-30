@@ -31,6 +31,27 @@ export const createNewUser = (userInfo) => async (dispatch) => {
     }
 }
 
+export const toggleDeleteUser = (userId) => {
+    if (userId) {
+        return {
+            type: CONSTANTS.TOGGLE_DELETE_USER,
+            payload: userId
+        }
+    }
+    return {
+        type: CONSTANTS.TOGGLE_DELETE_USER,
+        payload: null
+    }
+}
+
+export const deleteUser = (userId) => async (dispatch) => {
+    const response = await UserService.deleteUser(userId)
+    dispatch({
+        type: CONSTANTS.DELETE_USER_SUCCESS,
+        payload: response.id
+    })
+} 
+
 export const clearError = () => ({
     type: CONSTANTS.CLEAR_ERROR
 })

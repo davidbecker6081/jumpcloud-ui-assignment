@@ -1,18 +1,24 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {
-  getAllUsers
+  getAllUsers,
+  toggleDeleteUser,
+  deleteUser
 } from '../Actions/userActions'
 
 const mapStateToProps = ({ userReducer }) => ({
   users: userReducer.users,
+  deleteUserConfirmation: userReducer.deleteUserConfirmation,
+  userToDelete: userReducer.userToDelete,
   status: userReducer.status
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      getAllUsers
+      getAllUsers,
+      toggleDeleteUser,
+      deleteUser
     },
     dispatch
   )

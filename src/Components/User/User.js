@@ -1,16 +1,11 @@
 import React from 'react'
 import './user.css'
 
-class Todo extends React.Component {
-    render() {
-        return (
-            <article className="user">
-                <div>
-                    {this.props.user}
-                </div>
-            </article>
-        )
-    }
-}
+const User = ({ username, toggleDeleteUser }) => (
+    <article className="user">
+        {username}
+        <button onClick={() => toggleDeleteUser()}>X</button>
+    </article>
+)
 
-export default Todo
+export default User

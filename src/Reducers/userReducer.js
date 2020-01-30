@@ -3,6 +3,8 @@ import CONSTANTS from '../Actions/utils/constants'
 const initialState = {
     users: [],
     createNewUserWindowOpen: false,
+    deleteUserConfirmation: false,
+    userToDelete: null,
     status: 'OK'
 }
 
@@ -32,6 +34,19 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 status: 'OK'
+            }
+        case CONSTANTS.TOGGLE_DELETE_USER:
+            return {
+                ...state,
+                deleteUserConfirmation: !state.deleteUserConfirmation,
+                userToDelete: action.payload
+            }
+        case CONSTANTS.DELETE_USER_SUCCESS:
+            return {
+                ...state,
+                deleteUserConfirmation: !state.deleteUserConfirmation,
+                userToDelete: null,
+                users: state.users.filter(user => user.id !== action.payload)
             }
         default:
             return initialState

@@ -65,6 +65,11 @@ export default (state = initialState, action) => {
                     return user
                 })
             }
+        case CONSTANTS.UPDATE_USER_ERRED:
+            return {
+                ...state,
+                status: action.payload
+            }
         default:
             return initialState
     }

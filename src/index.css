@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
 html {
@@ -13,16 +14,29 @@ body {
     line-height: 1.5;
 }
 
+h1, h2, h3, h4, h5, h6, p, ul, li {
+    color: #414c55;
+    margin: 0;
+    padding: 0;
+}
+
 button {
-    background: white;
-    border: 1px black solid;
+    border: none;
+    color: white;
     cursor: pointer;
+    font-weight: 300;
+    margin: 0;
     outline: none;
 }
 
+button:hover {
+    opacity: 0.8;
+}
+
 button:disabled {
+    background-color: #e3e8e9;
+    color: #92999e;
     cursor: default;
-    opacity: 0.5;
 }
 
 input:focus {

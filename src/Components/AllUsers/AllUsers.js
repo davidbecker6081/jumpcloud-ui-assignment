@@ -20,19 +20,20 @@ class AllUsers extends React.Component {
             toggleUpdateUser
         } = this.props
         return (
-            <section className='allUsers'>
+            <ul className='allUsers'>
                 {
                     users.map(user => 
                         <User
                             key={user.id}
                             username={user.username}
+                            email={user.email}
                             toggleDeleteUser={toggleDeleteUser.bind(null, user.id)}
                             toggleUpdateUser={toggleUpdateUser.bind(null, user)}
                         />
                     )
                 }
                 { deleteUserConfirmation && <Confirmation toggleDeleteUser={toggleDeleteUser} deleteUser={deleteUser.bind(null, userToDelete)}/> }
-            </section>
+            </ul>
         )
     }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import UserSettingsContainer from '../../Containers/UserSettingsContainer'
 import UserForm from '../UserForm/UserForm'
 import Error from '../Error/Error'
+import './userSettings.css'
 
 const UserSettings = ({
     createNewUser,
@@ -13,8 +14,8 @@ const UserSettings = ({
     userToUpdate,
     updateUser
 }) => (
-    <section>
-        <button onClick={() => toggleCreateNewUser()}>+</button>
+    <section className='user-settings'>
+        <button className='user-settings-btn' onClick={() => toggleCreateNewUser()}>+</button>
         {
             createNewUserWindowOpen && !userToUpdate &&
                 <UserForm

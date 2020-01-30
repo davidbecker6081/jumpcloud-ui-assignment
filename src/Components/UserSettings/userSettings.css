@@ -1,0 +1,10 @@
+.user-settings {
+    position: relative;
+    float: right;
+}
+
+.user-settings-btn {
+    background-color: #2cc692;
+    border-radius: 50%;
+    font-size: 1.1rem;
+}
